@@ -19,6 +19,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/email-login", "check-email-login", "login-link").permitAll()
                 .mvcMatchers(HttpMethod.GET, "/profile/*").permitAll()
                 .anyRequest().authenticated();
+
+        http.formLogin()
+                .loginPage("/login").permitAll();
+
+        http.logout()
+                .logoutSuccessUrl("/");
     }
 
     @Override
@@ -27,12 +33,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/node_modules/**")
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
-
-//    @Override
-//    public void configure(WebSecurity web) throws Exception
-//    {
-//        // static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상통과 )
-//        web.ignoring().antMatchers("/static/**");
-//    }
 
 }

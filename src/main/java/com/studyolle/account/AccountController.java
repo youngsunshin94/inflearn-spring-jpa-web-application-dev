@@ -87,4 +87,5 @@ public class AccountController {
         accountService.sendSignUpConfirmEmail(account);
         return "redirect:/";
     }
+
 }
